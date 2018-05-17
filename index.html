@@ -1,0 +1,121 @@
+<html>
+<head>
+	<title>Add</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Product Add</h1>
+
+<form action = "index.php" method = "post">
+	SKU: <br>
+    <input type="text" name="SKU"><br>
+	Name: <br>
+    <input type="text" name="Name"><br>
+	Price: <br>
+    <input type="number" name="Price" min="0"><br><br>
+			<select name="Type" id = "drop" onchange="fun()">
+				<option value="def">Please choose type</option>
+	  			<option value="DVD">DVD</option>
+	  			<option value="Book">Book</option>
+	  			<option value="Furniture">Furniture</option>
+			</select>
+
+	<p id="3"></p>
+    <div>
+		<input type="number" name="Size" id="4">
+    </div>
+
+	<div>
+		<input type="text" name="Weight" id="5">
+	</div>
+
+	<div id="dim">
+		Height: <br>
+        <input type="number" name="Height" id="6.1" min="0"><br>
+		Width: <br>
+        <input type="number" name="Width" id="6.2" min="0"><br>
+		Length: <br>
+        <input type="number" name="Length" id="6.3" min="0"><br>
+	</div>
+<br>
+	Add product <input type="submit" name="iesniegt" id="done">
+
+
+
+</form>
+
+<form action="list.php" method="post" id="poga">
+    <input type="submit" value="Product List">
+</form>
+
+
+<script>
+    document.getElementById("4").style.display = "none";	//dvd
+    document.getElementById("5").style.display = "none";	//Book
+    document.getElementById("dim").style.display = "none";	//Furniture
+    document.getElementById('done').disabled = true;
+
+	function fun(){
+        let e = document.getElementById("drop");
+        let a = e.options[e.selectedIndex].text;
+
+
+        switch(a) {
+			case 'DVD':
+				document.getElementById("3").innerHTML = "Please insert the size of the dvd in mb:";
+				document.getElementById("5").value = "";
+				clear6();
+				document.getElementById("4").style.display = "inline";
+				document.getElementById("5").style.display = "none";
+				document.getElementById("dim").style.display = "none";
+                document.getElementById('done').disabled = false;
+				break;
+
+			case 'Book':
+				document.getElementById("3").innerHTML = "Please insert the weight of the book:";
+				document.getElementById("4").value = "";
+				clear6();
+				document.getElementById("5").style.display = "inline";
+				document.getElementById("4").style.display = "none";
+				document.getElementById("dim").style.display = "none";
+                document.getElementById('done').disabled = false;
+				break;
+
+			case 'Furniture':
+				document.getElementById("3").innerHTML = "Please insert the dimension of furniture:";
+				document.getElementById("5").value = "";
+				document.getElementById("4").value = "";
+				document.getElementById("dim").style.display = "inline";
+				document.getElementById("5").style.display = "none";
+				document.getElementById("4").style.display = "none";
+                document.getElementById('done').disabled = false;
+				break;
+
+			case 'Please choose type':
+				document.getElementById("3").innerHTML = "";
+				document.getElementById("4").value = "";
+				document.getElementById("5").value = "";
+				clear6();
+				document.getElementById("4").style.display = "none";
+				document.getElementById("5").style.display = "none";
+				document.getElementById("dim").style.display = "none";
+				document.getElementById('done').disabled = true;
+
+		}
+
+	}
+
+     function clear6()
+     {
+         document.getElementById("6.1").value = "";
+         document.getElementById("6.2").value = "";
+         document.getElementById("6.3").value = "";
+         document.getElementById("dim").value = "";
+     }
+
+
+</script>
+
+</body>
+</html>
